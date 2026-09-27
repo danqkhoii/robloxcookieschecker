@@ -261,6 +261,7 @@
 
             try {
                 const response = await fetch('https://khoidang11.pythonanywhere.com/check-cookies', {
+                    method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cookies: rawCookies })
                 });
@@ -283,10 +284,10 @@
                                     ${isAlive ? '✓ SỐNG' : '✕ CHẾT'}
                                 </span>
                             </td>
-                            <td class="p-3.5 font-semibold text-slate-100">${res.username}</td>
-                            <td class="p-3.5 font-mono text-slate-400 text-xs">${res.id}</td>
-                            <td class="p-3.5 text-slate-300">${res.displayName}</td>
-                            <td class="p-3.5 font-mono text-slate-500 text-xs">${res.cookie_snippet}</td>
+                            <td class="p-3.5 font-semibold text-slate-100">${res.username || 'N/A'}</td>
+                            <td class="p-3.5 font-mono text-slate-400 text-xs">${res.id || 'N/A'}</td>
+                            <td class="p-3.5 text-slate-300">${res.displayName || 'N/A'}</td>
+                            <td class="p-3.5 font-mono text-slate-500 text-xs">${res.cookie_snippet || 'N/A'}</td>
                         `;
                         resultTableBody.appendChild(row);
                     });
@@ -304,7 +305,7 @@
             } catch (error) {
                 resultArea.classList.add('hidden');
                 summaryStats.classList.add('hidden');
-                showError('Không thể kết nối tới Server Python (http://localhost:5000). Hãy đảm bảo bạn đã khởi chạy file app.py!');
+                showError('Không thể kết nối tới Server PythonAnywhere. Hãy kiểm tra lại Server hoặc CORS!');
             } finally {
                 checkBtn.disabled = false;
                 btnText.innerText = 'Kiểm Tra Tất Cả Cookie';
