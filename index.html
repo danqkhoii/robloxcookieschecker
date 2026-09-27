@@ -260,8 +260,7 @@
             btnSpinner.classList.remove('hidden');
 
             try {
-                const response = await fetch('$$\text{[https://khoidang11.pythonanywhere.com/check-cookies](https://khoidang11.pythonanywhere.com/check-cookies)}$$', {
-                    method: 'POST',
+                const response = await fetch('https://khoidang11.pythonanywhere.com/check-cookies', {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cookies: rawCookies })
                 });
